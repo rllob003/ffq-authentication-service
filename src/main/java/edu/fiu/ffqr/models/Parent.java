@@ -40,7 +40,7 @@ public class Parent{
     }
 	
 	public String getParentId() {
-		return parentId;
+		return this.parentId;
 	}
 
 	public void setParentId(String parentId) {
@@ -48,7 +48,7 @@ public class Parent{
 	}
 
 	public String getUsername() {
-		return username;
+		return this.username;
     }
     
     public String getFullname() {

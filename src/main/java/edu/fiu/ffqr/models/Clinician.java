@@ -39,7 +39,7 @@ public class Clinician{
     }
 	
 	public String getClinicianId() {
-		return clinicianId;
+		return this.clinicianId;
 	}
 
 	public void setClinicianId(String clinicianId) {
@@ -47,7 +47,7 @@ public class Clinician{
 	}
 
 	public String getUsername() {
-		return username;
+		return this.username;
     }
     
     public String getFullname() {

@@ -18,15 +18,15 @@ public class Clinic{
 	private ObjectId clinicId; 
 	@JsonProperty("address")
 	private String address;
-	@JsonProperty("builddate")
-    private String builddate;
+	@JsonProperty("datebuilt")
+    private String dateBuilt;
 
 	public Clinic() {}
 	
-	public Clinic(ObjectId clinicId, String address, String builddate){
+	public Clinic(ObjectId clinicId, String address, String dateBuilt){
         this.clinicId = clinicId;
 		this.address = address;
-		this.builddate = builddate;
+		this.dateBuilt = dateBuilt;
     }
 	
 	public ObjectId getClinicId() {
@@ -44,8 +44,8 @@ public class Clinic{
     public void setAdress(String address) {
         this.address = address;
     }
-    public void getBuilddate(String builddate) {
-        this.builddate = builddate;
+    public void getBuilddate(String dateBuilt) {
+        this.dateBuilt = dateBuilt;
     }
 
 

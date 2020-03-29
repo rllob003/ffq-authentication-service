@@ -50,12 +50,12 @@ public class ClinicController{
     }  
 
     @GetMapping("/{clinicID}")
-	public Clinic getClinician(@PathVariable("clinicianID") ObjectId clinicId) {
+	public Clinic getClinic(@PathVariable("clinicID") ObjectId clinicId) {
 		return clinicService.getClinicByClinicId(clinicId);
 	}
     
-    @PostMapping("/createclinician")
-    public Clinic createUser(@RequestBody Clinic clinic) throws JsonProcessingException {
+    @PostMapping("/createclinic")
+    public Clinic createClinic(@RequestBody Clinic clinic) throws JsonProcessingException {
 
       if (clinicService.getClinicByClinicId(clinic.getClinicId()) != null) {
             throw new IllegalArgumentException("A user with Username " + clinic.getClinicId() + " already exists");
@@ -64,8 +64,8 @@ public class ClinicController{
 	  
   }
 
-  @PostMapping("/updateclinician")
-    public Clinic updateUser(@RequestBody Clinic clinic) throws JsonProcessingException {
+  @PostMapping("/updateclinic")
+    public Clinic updateClinic(@RequestBody Clinic clinic) throws JsonProcessingException {
         
         if (clinicService.getClinicByClinicId(clinic.getClinicId()) == null) {
             throw new IllegalArgumentException("A user with Username " + clinic.getClinicId() + " doesn't exist");

@@ -26,6 +26,8 @@ public class FFQUserApplication {
 		DataLoader loader = (DataLoader)ctx.getBean(DataLoader.class);
 		loader.loadSysUsersService();
 		loader.load();
+		loader.loadClinicians();
+		loader.loadParents();
 
 	}
 	

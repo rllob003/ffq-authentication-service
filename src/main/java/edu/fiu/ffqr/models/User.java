@@ -17,11 +17,6 @@ public class User implements Serializable {
 	private String username;
 	@JsonProperty("userpassword")
 	private String userpassword;
-	//private final Set<? extends GrantedAuthority> grantedAuthority;
-//	@JsonProperty("isNonExpired")
-//	private  boolean isAccountNonExpired;
-	//@JsonProperty("isNonLocked")
-	//private  boolean isAccountNonLocked;
 	@JsonProperty("isEnabled")
 	private  boolean isEnabled;
 	@JsonProperty("isClinician")
@@ -33,13 +28,11 @@ public class User implements Serializable {
 
 	public User() {}
 	
-	public User(String userId, String username, String userpassword, boolean isEnabled, boolean isClinician, boolean isParent, boolean isAdmin){
+	public User(String userId, String username, String userpassword, boolean isEnabled, boolean isAdmin){
         this.userId = userId;
 		this.username = username;
 		this.userpassword = userpassword;
 		this.isEnabled = isEnabled;
-		this.isClinician = isClinician;
-		this.isParent = isParent;
 		this.isAdmin = isAdmin;
 
     }

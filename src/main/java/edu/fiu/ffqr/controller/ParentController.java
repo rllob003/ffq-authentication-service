@@ -18,65 +18,69 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import edu.fiu.ffqr.FFQUserApplication;
+import edu.fiu.ffqr.controller.UserController;
 import edu.fiu.ffqr.models.SysUser;
 import edu.fiu.ffqr.models.User;
 import edu.fiu.ffqr.service.SysUserService;
 import edu.fiu.ffqr.service.UserService;
+import edu.fiu.ffqr.models.Parent;
+import edu.fiu.ffqr.service.ClinicianService;
+import edu.fiu.ffqr.service.ParentService;
 
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/parents")
+public class ParentController{
 
     @Autowired
-    private UserService userService;
+    private ParentService parentService;
 
 
-    public UserController() {
+    public ParentController() {
     }
     
     @GetMapping("/all")
-    public List<User> allUsers() throws JsonProcessingException {
+    public List<Parent> allClinicians() throws JsonProcessingException {
         
-        List<User> users = userService.getAll();
+        List<Parent> users = parentService.getAll();
         return users;
     }  
 
-    @GetMapping("/{userID}")
-	public User gUserApplication(@PathVariable("userID") String userID) {
-		return userService.getUserByUserId(userID);
+    @GetMapping("/{ParentID}")
+	public Parent getParent(@PathVariable("parentID") String parentID) {
+		return parentService.getParentByParentId(parentID);
 	}
     
-    @PostMapping("/createuser")
-    public User createUser(@RequestBody User user) throws JsonProcessingException {
+    @PostMapping("/createparent")
+    public Parent createUser(@RequestBody Parent user) throws JsonProcessingException {
 
-      if (userService.getUserByUsername(user.getUsername()) != null) {
+      if (parentService.getParentByUsername(user.getUsername()) != null) {
             throw new IllegalArgumentException("A user with Username " + user.getUsername() + " already exists");
       }  
-	  return userService.create(user);
+	  return parentService.create(user);
 	  
   }
 
-  @PostMapping("/updateuser")
-    public User updateUser(@RequestBody User user) throws JsonProcessingException {
+  @PostMapping("/updateparent")
+    public Parent updateUser(@RequestBody Parent user) throws JsonProcessingException {
         
-        if (userService.getUserByUsername(user.getUsername()) == null) {
+        if (parentService.getParentByUsername(user.getUsername()) == null) {
             throw new IllegalArgumentException("A user with Username " + user.getUsername() + " doesn't exist");
         }
 
-        return userService.create(user);
+        return parentService.create(user);
     }
 
 
     @PostMapping("/create")
-    public User create(@RequestBody User item) throws JsonProcessingException {
+    public Parent create(@RequestBody Parent item) throws JsonProcessingException {
         
-        if (userService.getUserByUsername(item.getUsername()) != null) {
+        if (parentService.getParentByUsername(item.getUsername()) != null) {
             throw new IllegalArgumentException("A user with Username " + item.getUsername() + " already exists");
         }
 
-        return userService.create(item);
+        return parentService.create(item);
     }
 
     
@@ -84,12 +88,12 @@ public class UserController {
    
 	
 	@PostMapping("/createMany")
-	public ArrayList<User> create(@RequestBody ArrayList<User> users) {
-		User user = null;
+	public ArrayList<Parent> create(@RequestBody ArrayList<Parent> users) {
+		Parent user = null;
 		
-		for(User s : users)
+		for(Parent s : users)
 		{
-			user = userService.create(s);
+			user = parentService.create(s);
 		}
 		
 		return users;
@@ -99,7 +103,7 @@ public class UserController {
 	  
 	  @DeleteMapping("/delete")
 	  public String delete(@RequestParam String username) {
-	      userService.delete(username);
+        parentService.delete(username);
 	  	  return "Deleted " + username;
 	  }
 	

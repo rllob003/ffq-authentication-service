@@ -45,5 +45,8 @@ public class UserService {
 		User fi = usersRepository.getByUserId(userId);
 		usersRepository.delete(fi);
 	}
+	/*public List<User> getAllAdmins(boolean admin)	{
+		return usersRepository.getAdmins(admin);
+	}*/
 	
 }

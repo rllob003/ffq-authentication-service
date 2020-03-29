@@ -18,65 +18,68 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import edu.fiu.ffqr.FFQUserApplication;
+import edu.fiu.ffqr.controller.UserController;
+import edu.fiu.ffqr.models.Clinician;
 import edu.fiu.ffqr.models.SysUser;
 import edu.fiu.ffqr.models.User;
 import edu.fiu.ffqr.service.SysUserService;
 import edu.fiu.ffqr.service.UserService;
+import edu.fiu.ffqr.service.ClinicianService;
 
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/clinicians")
+public class ClinicianController{
 
     @Autowired
-    private UserService userService;
+    private ClinicianService clinicianService;
 
 
-    public UserController() {
+    public ClinicianController() {
     }
     
     @GetMapping("/all")
-    public List<User> allUsers() throws JsonProcessingException {
+    public List<Clinician> allClinicians() throws JsonProcessingException {
         
-        List<User> users = userService.getAll();
+        List<Clinician> users = clinicianService.getAll();
         return users;
     }  
 
-    @GetMapping("/{userID}")
-	public User gUserApplication(@PathVariable("userID") String userID) {
-		return userService.getUserByUserId(userID);
+    @GetMapping("/{clinicianID}")
+	public Clinician getClinician(@PathVariable("clinicianID") String clinicianId) {
+		return clinicianService.getClinicianByClinicianId(clinicianId);
 	}
     
-    @PostMapping("/createuser")
-    public User createUser(@RequestBody User user) throws JsonProcessingException {
+    @PostMapping("/createclinician")
+    public Clinician createUser(@RequestBody Clinician user) throws JsonProcessingException {
 
-      if (userService.getUserByUsername(user.getUsername()) != null) {
+      if (clinicianService.getClinicianByUsername(user.getUsername()) != null) {
             throw new IllegalArgumentException("A user with Username " + user.getUsername() + " already exists");
       }  
-	  return userService.create(user);
+	  return clinicianService.create(user);
 	  
   }
 
-  @PostMapping("/updateuser")
-    public User updateUser(@RequestBody User user) throws JsonProcessingException {
+  @PostMapping("/updateclinician")
+    public Clinician updateUser(@RequestBody Clinician user) throws JsonProcessingException {
         
-        if (userService.getUserByUsername(user.getUsername()) == null) {
+        if (clinicianService.getClinicianByUsername(user.getUsername()) == null) {
             throw new IllegalArgumentException("A user with Username " + user.getUsername() + " doesn't exist");
         }
 
-        return userService.create(user);
+        return clinicianService.create(user);
     }
 
 
     @PostMapping("/create")
-    public User create(@RequestBody User item) throws JsonProcessingException {
+    public Clinician create(@RequestBody Clinician item) throws JsonProcessingException {
         
-        if (userService.getUserByUsername(item.getUsername()) != null) {
+        if (clinicianService.getClinicianByUsername(item.getUsername()) != null) {
             throw new IllegalArgumentException("A user with Username " + item.getUsername() + " already exists");
         }
 
-        return userService.create(item);
+        return clinicianService.create(item);
     }
 
     
@@ -84,12 +87,12 @@ public class UserController {
    
 	
 	@PostMapping("/createMany")
-	public ArrayList<User> create(@RequestBody ArrayList<User> users) {
-		User user = null;
+	public ArrayList<Clinician> create(@RequestBody ArrayList<Clinician> users) {
+		Clinician user = null;
 		
-		for(User s : users)
+		for(Clinician s : users)
 		{
-			user = userService.create(s);
+			user = clinicianService.create(s);
 		}
 		
 		return users;
@@ -99,7 +102,7 @@ public class UserController {
 	  
 	  @DeleteMapping("/delete")
 	  public String delete(@RequestParam String username) {
-	      userService.delete(username);
+        clinicianService.delete(username);
 	  	  return "Deleted " + username;
 	  }
 	

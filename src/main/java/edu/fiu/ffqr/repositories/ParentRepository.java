@@ -1,22 +1,20 @@
 package edu.fiu.ffqr.repositories;
 
-import java.util.List;
-
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import edu.fiu.ffqr.models.User;
+import edu.fiu.ffqr.models.Parent;
+import edu.fiu.ffqr.models.Clinician;
 
 @Repository
-public interface UsersRepository extends MongoRepository<User, String> {
+public interface ParentRepository extends MongoRepository<Parent, String> {
 
-  User getByUserId(String userId);
+    Parent getByParentId(String parentId);
 	
-  User findByUsername(String username);
-
- // List<User> getAdmins(boolean isAdmin);
+    Parent findByUsername(String username);
   
     
 }

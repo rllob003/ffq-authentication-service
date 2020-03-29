@@ -15,6 +15,12 @@ import edu.fiu.ffqr.models.SysUser;
 import edu.fiu.ffqr.models.User;
 import edu.fiu.ffqr.repositories.SysUsersRepository;
 import edu.fiu.ffqr.repositories.UsersRepository;
+import edu.fiu.ffqr.controller.ClinicianController;
+import edu.fiu.ffqr.controller.ParentController;
+import edu.fiu.ffqr.models.Clinician;
+import edu.fiu.ffqr.models.Parent;
+import edu.fiu.ffqr.repositories.ParentRepository;
+import edu.fiu.ffqr.repositories.ClinicianRepository;
 
 @Component
 public class DataLoader {
@@ -23,16 +29,27 @@ public class DataLoader {
 	private UserController userController;   //Added to test for User
 	private UsersRepository userRepository;
 	private SysUserController sysUserController;   //Added to test for User
+	private ClinicianController clinicianController;   //Added to test for User
+	private ClinicianRepository clinicianRepository;
+	private ParentController parentController;   //Added to test for User
+	private ParentRepository parentRepository;
+
 
 	
 	
 	
 	public DataLoader(SysUsersRepository sysUsersRepository, SysUserController sysUserController,
-			UserController userController, UsersRepository userRepository) { //Added extra parameter (SysUsersRepository sysUsersRepository)
+			UserController userController, UsersRepository userRepository,
+			ClinicianController clinicianController, ClinicianRepository clinicianRepository,
+			ParentController parentController, ParentRepository parentRepository) { //Added extra parameter (SysUsersRepository sysUsersRepository)
 		this.sysUsersRepository = sysUsersRepository;  //Added for users test
 		this.sysUserController = sysUserController;    //Added for users test
 		this.userController = userController;      	   //Added for users test
 		this.userRepository = userRepository;
+		this.clinicianController = clinicianController; 
+		this.clinicianRepository = clinicianRepository;
+		this.parentController = parentController;
+		this.parentRepository = parentRepository;
 	}
 	
 	
@@ -105,6 +122,73 @@ public class DataLoader {
 
 	}
 	
+	public void loadClinicians() {
+		System.out.println("<------- Loading Clinicians... ------->");
+			
+		this.clinicianRepository.deleteAll();
+		
+		try {
+		
+			String resourceName = "ClinicianPayload.json";		
+		
+			ClassLoader classLoader = getClass().getClassLoader();
+			InputStream inputStream = classLoader.getResourceAsStream(resourceName);
+			JSONParser jsonParser = new JSONParser();		
+			JSONArray jsonArray = (JSONArray) jsonParser
+				.parse(new InputStreamReader(inputStream));
+			ObjectMapper mapper = new ObjectMapper();
+			List<Clinician> clinicianList = new ArrayList<>();
+		
+			for (Object object : jsonArray) {
+				JSONObject jsonObject = (JSONObject) object;
+				Clinician item = mapper.readValue(jsonObject.toString(), Clinician.class);
+				clinicianList.add(item);
+			}
+			
+			for(Clinician item : clinicianList) {
+				System.out.println(item.getUsername() + "---- Loaded!");
+				this.clinicianController.create(item);
+			}
+		} catch (Exception e) {
+			System.err.println("An error occurred while loading System Food Items Recommendations: ");
+			e.printStackTrace();
+		}		
+
+	}
+
+	public void loadParents() {
+		System.out.println("<------- Loading Parents... ------->");
+			
+		this.parentRepository.deleteAll();
+		
+		try {
+		
+			String resourceName = "ParentPayload.json";		
+		
+			ClassLoader classLoader = getClass().getClassLoader();
+			InputStream inputStream = classLoader.getResourceAsStream(resourceName);
+			JSONParser jsonParser = new JSONParser();		
+			JSONArray jsonArray = (JSONArray) jsonParser
+				.parse(new InputStreamReader(inputStream));
+			ObjectMapper mapper = new ObjectMapper();
+			List<Parent> parentList = new ArrayList<>();
+		
+			for (Object object : jsonArray) {
+				JSONObject jsonObject = (JSONObject) object;
+				Parent item = mapper.readValue(jsonObject.toString(), Parent.class);
+				parentList.add(item);
+			}
+			
+			for(Parent item : parentList) {
+				System.out.println(item.getUsername() + "---- Loaded!");
+				this.parentController.create(item);
+			}
+		} catch (Exception e) {
+			System.err.println("An error occurred while loading System Food Items Recommendations: ");
+			e.printStackTrace();
+		}		
+
+	}
 	/*public void load() {
 		System.out.println("Loading fooditems...");
 		try {

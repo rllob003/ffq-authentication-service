@@ -29,15 +29,19 @@ public class ClinicService {
 		return clinicRepository.findAll();
 	}
 	
-	public Clinic getClinicByClinicId(ObjectId clinicId) {
+	public Clinic getClinicByClinicId(int clinicId) {
 		return clinicRepository.getByClinicId(clinicId);
+	}
+
+	public Clinic getClinicByClinicName(String clinicName) {
+		return clinicRepository.getByClinicName(clinicName);
 	}
 	
 	public Clinic create(Clinic clinic) {
 		return clinicRepository.save(clinic);
 	}
 
-	public void delete(ObjectId clinicId) {
+	public void delete(int clinicId) {
 		Clinic fi = clinicRepository.getByClinicId(clinicId);
 		clinicRepository.delete(fi);
 	}

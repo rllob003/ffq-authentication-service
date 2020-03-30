@@ -12,28 +12,31 @@ import edu.fiu.ffqr.models.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(collection="clinics")
-public class Clinic{
+public class Clinic implements Serializable {
 
 	@JsonProperty("clinicId")
-	private ObjectId clinicId; 
+	private int clinicId; 
 	@JsonProperty("address")
 	private String address;
 	@JsonProperty("datebuilt")
-    private String dateBuilt;
+	private String dateBuilt;
+	@JsonProperty("clinicname")
+	private String clinicName;
 
 	public Clinic() {}
 	
-	public Clinic(ObjectId clinicId, String address, String dateBuilt){
+	public Clinic(int clinicId, String address, String dateBuilt, String clinicName){
         this.clinicId = clinicId;
 		this.address = address;
 		this.dateBuilt = dateBuilt;
+		this.clinicName = clinicName;
     }
 	
-	public ObjectId getClinicId() {
+	public int getClinicId() {
 		return clinicId;
 	}
 
-	public void setClinicianId(ObjectId clinicId) {
+	public void setClinicianId(int clinicId) {
 		this.clinicId = clinicId;
 	}
 
@@ -44,8 +47,18 @@ public class Clinic{
     public void setAdress(String address) {
         this.address = address;
     }
-    public void getBuilddate(String dateBuilt) {
+    public String getDateBuilt() {
+        return this.dateBuilt;
+	}
+	public void setDateBuilt(String dateBuilt) {
         this.dateBuilt = dateBuilt;
+	}
+
+	public String getClinicName() {
+		return this.clinicName;
+	}   
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
     }
 
 

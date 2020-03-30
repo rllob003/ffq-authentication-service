@@ -198,7 +198,7 @@ public class DataLoader {
 
 	}
 
-	public void loadPClinics() {
+	public void loadClinics() {
 		System.out.println("<------- Loading Clinics... ------->");
 			
 		this.clinicRepository.deleteAll();

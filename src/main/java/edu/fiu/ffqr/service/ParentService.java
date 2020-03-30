@@ -30,7 +30,7 @@ public class ParentService {
 		return parentRepository.findByUsername(username);
 	}
 	
-	public Parent getParentByParentId(String parentId) {
+	public Parent getParentByParentId(int parentId) {
 		return parentRepository.getByParentId(parentId);
 	}
 	
@@ -43,7 +43,7 @@ public class ParentService {
 		parentRepository.delete(fi);
 	}
 
-	public void deleteById(String parentId) {
+	public void deleteById(int parentId) {
 		Parent fi = parentRepository.getByParentId(parentId);
 		parentRepository.delete(fi);
 	}

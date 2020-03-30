@@ -28,6 +28,7 @@ public class FFQUserApplication {
 		loader.load();
 		loader.loadClinicians();
 		loader.loadParents();
+		loader.loadClinics();
 
 	}
 	

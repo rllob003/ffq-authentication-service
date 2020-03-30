@@ -31,7 +31,7 @@ public class ClinicianService {
 		return clinicianRepository.findByUsername(username);
 	}
 	
-	public Clinician getClinicianByClinicianId(String clinicianId) {
+	public Clinician getClinicianByClinicianId(int clinicianId) {
 		return clinicianRepository.getByClinicianId(clinicianId);
 	}
 	
@@ -44,7 +44,7 @@ public class ClinicianService {
 		clinicianRepository.delete(fi);
 	}
 
-	public void deleteById(String clinicianId) {
+	public void deleteById(int clinicianId) {
 		Clinician fi = clinicianRepository.getByClinicianId(clinicianId);
 		clinicianRepository.delete(fi);
 	}

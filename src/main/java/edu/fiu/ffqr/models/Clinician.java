@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import edu.fiu.ffqr.models.User;
@@ -11,10 +12,10 @@ import edu.fiu.ffqr.models.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(collection="clinicians")
-public class Clinician{
+public class Clinician implements Serializable{
 
 	@JsonProperty("clinicianId")
-	private String clinicianId; 
+	private int clinicianId; 
 	@JsonProperty("username")
 	private String username;
 	@JsonProperty("userpassword")
@@ -28,7 +29,7 @@ public class Clinician{
 
 	public Clinician() {}
 	
-	public Clinician(String clinicianId, String username, String firstname, String lastname, String userpassword, int assignedClinic){
+	public Clinician(int clinicianId, String username, String firstname, String lastname, String userpassword, int assignedClinic){
         this.clinicianId = clinicianId;
 		this.username = username;
 		this.userpassword = userpassword;
@@ -38,11 +39,11 @@ public class Clinician{
 
     }
 	
-	public String getClinicianId() {
+	public int getClinicianId() {
 		return this.clinicianId;
 	}
 
-	public void setClinicianId(String clinicianId) {
+	public void setClinicianId(int clinicianId) {
 		this.clinicianId = clinicianId;
 	}
 

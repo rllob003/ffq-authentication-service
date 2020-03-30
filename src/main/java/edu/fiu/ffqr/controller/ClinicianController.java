@@ -3,6 +3,7 @@ package edu.fiu.ffqr.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,7 +48,7 @@ public class ClinicianController{
     }  
 
     @GetMapping("/{clinicianID}")
-	public Clinician getClinician(@PathVariable("clinicianID") String clinicianId) {
+	public Clinician getClinician(@PathVariable("clinicianID") int clinicianId) {
 		return clinicianService.getClinicianByClinicianId(clinicianId);
 	}
     
@@ -76,7 +77,7 @@ public class ClinicianController{
     public Clinician create(@RequestBody Clinician item) throws JsonProcessingException {
         
         if (clinicianService.getClinicianByUsername(item.getUsername()) != null) {
-            throw new IllegalArgumentException("A user with Username " + item.getUsername() + " already exists");
+            throw new IllegalArgumentException("A clinician with Username " + item.getUsername() + " already exists");
         }
 
         return clinicianService.create(item);

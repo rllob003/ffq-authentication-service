@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import edu.fiu.ffqr.models.User;
@@ -12,10 +13,10 @@ import edu.fiu.ffqr.models.Clinician;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(collection="parents")
-public class Parent{
+public class Parent implements Serializable{
 
 	@JsonProperty("parentId")
-	private String parentId; 
+	private int parentId; 
 	@JsonProperty("username")
 	private String username;
 	@JsonProperty("userpassword")
@@ -29,7 +30,7 @@ public class Parent{
 
 	public Parent() {}
 	
-	public Parent(String parentId, String username, String firstname, String lastname, String userpassword, boolean isEnabled, String assignedClinician){
+	public Parent(int parentId, String username, String firstname, String lastname, String userpassword, boolean isEnabled, String assignedClinician){
         this.parentId = parentId;
 		this.username = username;
 		this.userpassword = userpassword;
@@ -39,11 +40,11 @@ public class Parent{
 
     }
 	
-	public String getParentId() {
+	public int getParentId() {
 		return this.parentId;
 	}
 
-	public void setParentId(String parentId) {
+	public void setParentId(int parentId) {
 		this.parentId = parentId;
 	}
 

@@ -12,7 +12,7 @@ import edu.fiu.ffqr.models.Clinician;
 @Repository
 public interface ParentRepository extends MongoRepository<Parent, String> {
 
-    Parent getByParentId(String parentId);
+    Parent getByParentId(int parentId);
 	
     Parent findByUsername(String username);
   

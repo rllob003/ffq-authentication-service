@@ -3,6 +3,7 @@ package edu.fiu.ffqr.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,7 +49,7 @@ public class ParentController{
     }  
 
     @GetMapping("/{ParentID}")
-	public Parent getParent(@PathVariable("parentID") String parentID) {
+	public Parent getParent(@PathVariable("parentID") int parentID) {
 		return parentService.getParentByParentId(parentID);
 	}
     
@@ -77,7 +78,7 @@ public class ParentController{
     public Parent create(@RequestBody Parent item) throws JsonProcessingException {
         
         if (parentService.getParentByUsername(item.getUsername()) != null) {
-            throw new IllegalArgumentException("A user with Username " + item.getUsername() + " already exists");
+            throw new IllegalArgumentException("A parent with Username " + item.getUsername() + " already exists");
         }
 
         return parentService.create(item);

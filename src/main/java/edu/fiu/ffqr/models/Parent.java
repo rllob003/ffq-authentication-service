@@ -27,7 +27,7 @@ public class Parent implements Serializable{
     private String lastname;
     @JsonProperty("assignedClinic")
 	private int assignedClinic;
-	@JsonProperty("assignedclinician")
+	@JsonProperty("assignedClinician")
     private String assignedClinician;
 
 	public Parent() {}

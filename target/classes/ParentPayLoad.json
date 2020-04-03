@@ -1,7 +1,7 @@
 [
-    {"parentId": 1,"username": "Johndoe88", "userpassword": "admin123", "firstname": "John", "lastname": "Doe", "assignedClinic": "", "assignedclinician": "clinician1"},
-    {"parentId": 2,"username": "parent2", "userpassword": "admin123", "firstname": "", "lastname": "", "assignedClinic": "", "assignedclinician": ""},
-    {"parentId": 3,"username": "parent3", "userpassword": "admin123", "firstname": "", "lastname": "", "assignedClinic": "", "assignedclinician": ""},
-    {"parentId": 4,"username": "millyj", "userpassword": "admin123", "firstname": "Melissa", "lastname": "James", "assignedClinic": "", "assignedclinician": "clinician2"}
+    {"parentId": 1,"username": "Johndoe88", "userpassword": "admin123", "firstname": "John", "lastname": "Doe", "assignedClinic": 0, "assignedClinician": "clinician1"},
+    {"parentId": 2,"username": "parent2", "userpassword": "admin123", "firstname": "", "lastname": "", "assignedClinic": 0, "assignedClinician": ""},
+    {"parentId": 3,"username": "parent3", "userpassword": "admin123", "firstname": "", "lastname": "", "assignedClinic": 0, "assignedClinician": ""},
+    {"parentId": 4,"username": "millyj", "userpassword": "admin123", "firstname": "Melissa", "lastname": "James", "assignedClinic": 0, "assignedClinician": "clinician2"}
 
 ]

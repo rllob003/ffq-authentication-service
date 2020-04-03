@@ -1,7 +1,7 @@
 [
-    {"clinicianId": 1,"username": "clinician1", "userpassword": "admin123", "role": "", "firstname": "Mary", "lastname": "Adams", "assignedclinic": 1},
-    {"clinicianId": 2,"username": "clinician2", "userpassword": "admin123", "role": "", "firstname": "John", "lastname": "Smith", "assignedclinic": 2},
-    {"clinicianId": 3,"username": "clinician3", "userpassword": "admin123", "role": "", "firstname": "Giraldo", "lastname": "Gabriel", "assignedclinic": 2},
-    {"clinicianId": 4,"username": "clinician4", "userpassword": "admin123", "role": "", "firstname": "Tom", "lastname": "Hanks", "assignedclinic": 1}
+    {"clinicianId": 1,"username": "clinician1", "userpassword": "admin123", "role": "", "firstname": "Mary", "lastname": "Adams", "assignedClinic": 1},
+    {"clinicianId": 2,"username": "clinician2", "userpassword": "admin123", "role": "", "firstname": "John", "lastname": "Smith", "assignedClinic": 2},
+    {"clinicianId": 3,"username": "clinician3", "userpassword": "admin123", "role": "", "firstname": "Giraldo", "lastname": "Gabriel", "assignedClinic": 2},
+    {"clinicianId": 4,"username": "clinician4", "userpassword": "admin123", "role": "", "firstname": "Tom", "lastname": "Hanks", "assignedClinic": 1}
 
 ]

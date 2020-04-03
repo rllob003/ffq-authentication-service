@@ -26,7 +26,7 @@ public class Clinician implements Serializable{
     private String firstname;
     @JsonProperty("lastname")
 	private String lastname;
-    @JsonProperty("assignedclinic")
+    @JsonProperty("assignedClinic")
     private int assignedClinic;
 
 	public Clinician() {}
@@ -62,6 +62,16 @@ public class Clinician implements Serializable{
     }
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getRole()
+    {
+        return this.role;
+    }
+
+    public void setRole(String role)
+    {
+        this.role = role;
     }
 
     public int getAssignedClinic() {

@@ -62,7 +62,7 @@ public class ClinicianController{
 	  
   }
 
-  @PostMapping("/updateclinician")
+    @PutMapping("/updateclinician")
     public Clinician updateUser(@RequestBody Clinician user) throws JsonProcessingException {
         
         if (clinicianService.getClinicianByUsername(user.getUsername()) == null) {

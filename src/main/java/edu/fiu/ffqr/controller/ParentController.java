@@ -63,7 +63,7 @@ public class ParentController{
 	  
   }
 
-  @PostMapping("/updateparent")
+    @PutMapping("/updateparent")
     public Parent updateUser(@RequestBody Parent user) throws JsonProcessingException {
         
         if (parentService.getParentByUsername(user.getUsername()) == null) {

@@ -64,7 +64,7 @@ public class ClinicController{
 	  
   }
 
-  @PostMapping("/updateclinic")
+  @PutMapping("/updateclinic")
     public Clinic updateClinic(@RequestBody Clinic clinic) throws JsonProcessingException {
         
         if (clinicService.getClinicByClinicId(clinic.getClinicId()) == null) {

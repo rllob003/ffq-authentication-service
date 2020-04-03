@@ -20,6 +20,8 @@ public class Clinician implements Serializable{
 	private String username;
 	@JsonProperty("userpassword")
     private String userpassword;
+    @JsonProperty("role")
+    private String role;
     @JsonProperty("firstname")
     private String firstname;
     @JsonProperty("lastname")
@@ -29,10 +31,11 @@ public class Clinician implements Serializable{
 
 	public Clinician() {}
 	
-	public Clinician(int clinicianId, String username, String firstname, String lastname, String userpassword, int assignedClinic){
+	public Clinician(int clinicianId, String username, String userpassword, String role, String firstname, String lastname, int assignedClinic){
         this.clinicianId = clinicianId;
 		this.username = username;
-		this.userpassword = userpassword;
+        this.userpassword = userpassword;
+        this.role = role;
         this.firstname = firstname;
         this.lastname = lastname;
         this.assignedClinic = assignedClinic;

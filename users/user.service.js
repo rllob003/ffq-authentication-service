@@ -14,12 +14,12 @@ async function authenticate({ username, password }) {
     const url = "mongodb://localhost:27017/"; 
     const db = await MongoClient.connect(url);
     const dbo = db.db("ffq_database");
-    var query = { username: username, password: password };
-    var user = await dbo.collection("users").find(query).toArray();
+    var query = { username: username, userpassword: password };
+    var user = await dbo.collection("parents").find(query).toArray();
 
     if (Object.keys(user).length) {
         const token = jwt.sign({ sub: user.id }, config.secret);
-        const { password, ...userWithoutPassword } = user;
+        const { userpassword, ...userWithoutPassword } = user;
         return {
             ...userWithoutPassword,
             token
@@ -29,7 +29,7 @@ async function authenticate({ username, password }) {
 
 async function getAll() {
     return users.map(u => {
-        const { password, ...userWithoutPassword } = u;
+        const { userpassword, ...userWithoutPassword } = u;
         return userWithoutPassword;
     });
 }

@@ -9,13 +9,21 @@ module.exports = {
     getAll
 };
 
-async function authenticate({ username, password }) {
+async function authenticate({ username, password/*, userType */}) {
     const MongoClient = require('mongodb').MongoClient; 
     const url = "mongodb://localhost:27017/"; 
     const db = await MongoClient.connect(url);
     const dbo = db.db("ffq_database");
-    var query = { username: username, password: password };
-    var user = await dbo.collection("users").find(query).toArray();
+    var query = { username: username, userpassword: password };
+    var user = await dbo.collection("admins").find(query).toArray();
+    if(!Object.keys(user).length){
+        user = await dbo.collection("clinicians").find(query).toArray();
+    }
+    if(!Object.keys(user).length){
+        user = await dbo.collection("parents").find(query).toArray();
+    }
+
+    
 
     if (Object.keys(user).length) {
         const token = jwt.sign({ sub: user.id }, config.secret);

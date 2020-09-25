@@ -10,8 +10,9 @@ module.exports = {
 };
 
 async function authenticate({ username, password/*, userType */}) {
-    const MongoClient = require('mongodb').MongoClient; 
-    const url = "mongodb://localhost:27017/"; 
+    const MongoClient = require('mongodb').MongoClient;
+    require('dotenv').config();
+    const url = process.env.MONGO_URI_PROD || process.env.MONGO_URI;
     const db = await MongoClient.connect(url);
     const dbo = db.db("ffq_database");
     var query = { username: username, userpassword: password };

@@ -8,11 +8,13 @@
         "url": "https://github.com/cornflourblue/node-jwt-authentication-api.git"
     },
     "scripts": {
-        "start": "nodemon ./server.js"
+        "start": "nodemon ./server.js",
+        "start:prod": "node ./server.js"
     },
     "dependencies": {
         "body-parser": "^1.18.3",
         "cors": "^2.8.4",
+        "dotenv": "^8.2.0",
         "express": "^4.16.3",
         "express-jwt": "^5.3.1",
         "jsonwebtoken": "^8.2.2",

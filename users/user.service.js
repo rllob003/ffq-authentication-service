@@ -27,12 +27,13 @@ async function authenticate({ username, password/*, userType */}) {
     
 
     if (Object.keys(user).length) {
+        user = user[0];
         const token = jwt.sign({ sub: user.id }, config.secret);
-        const { password, ...userWithoutPassword } = user;
-        return {
+        const { userpassword, ...userWithoutPassword } = user;
+        return [{
             ...userWithoutPassword,
             token
-        };
+        }];
     }
 }
 

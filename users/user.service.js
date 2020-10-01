@@ -1,12 +1,12 @@
-﻿const config = require('config.json');
-const jwt = require('jsonwebtoken');
+﻿const config = require("config.json");
+const jwt = require("jsonwebtoken");
 
 // users hardcoded for simplicity, store in a db for production applications
 //const users = [{ id: 1, username: 'user', password: 'pass', firstName: 'Test', lastName: 'User' }];
 
 module.exports = {
-    authenticate,
-    getAll
+  authenticate,
+  getAll,
 };
 
 async function authenticate({ username, password/*, userType */}) {
@@ -23,8 +23,9 @@ async function authenticate({ username, password/*, userType */}) {
     if(!Object.keys(user).length){
         user = await dbo.collection("parents").find(query).toArray();
     }
-
-    
+    if (!Object.keys(user).length) {
+        user = await dbo.collection("research").find(query).toArray();
+    }
 
     if (Object.keys(user).length) {
         user = user[0];
@@ -38,8 +39,8 @@ async function authenticate({ username, password/*, userType */}) {
 }
 
 async function getAll() {
-    return users.map(u => {
-        const { password, ...userWithoutPassword } = u;
-        return userWithoutPassword;
-    });
+  return users.map((u) => {
+    const { password, ...userWithoutPassword } = u;
+    return userWithoutPassword;
+  });
 }

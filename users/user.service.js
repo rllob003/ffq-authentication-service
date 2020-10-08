@@ -13,7 +13,7 @@ async function authenticate({ username, password/*, userType */}) {
     const MongoClient = require('mongodb').MongoClient;
     require('dotenv').config();
     const url = process.env.MONGO_URI_PROD || process.env.MONGO_URI;
-    const db = await MongoClient.connect(url);
+    const db = await MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
     const dbo = db.db("ffq_database");
     var query = { username: username };
     var user = await dbo.collection("admins").find(query).toArray();

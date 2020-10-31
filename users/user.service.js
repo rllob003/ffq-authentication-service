@@ -27,7 +27,7 @@ async function authenticate({ username, password/*, userType */}) {
         user = await dbo.collection("researchers").find(query).toArray();
     }
     if (!Object.keys(user).length) {
-        user = await dbo.collection("researcher_parents").find(query).toArray();
+        user = await dbo.collection("participants").find(query).toArray();
     }
 
     const bcrypt = require('bcrypt');
